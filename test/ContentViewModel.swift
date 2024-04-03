@@ -16,8 +16,8 @@ class ContentViewModel: ObservableObject {
     }
     
     func moveImages() {
-        withAnimation(.easeOut(duration: 1)) {
-            yOffset -= UIScreen.main.bounds.height - 350
+        withAnimation(.easeOut(duration: 1.5)) {
+            yOffset -= 700
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) { [self] in
             yOffset = originalOffset

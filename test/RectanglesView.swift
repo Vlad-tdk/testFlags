@@ -1,32 +1,30 @@
-//
-//  RectanglesView.swift
-//  test
-//
-//  Created by Vlad on 1.4.24..
-//
-
 import SwiftUI
 
 struct RectanglesView: View {
     let geometry: GeometryProxy
     
     var body: some View {
-        ZStack {
+        let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
+        
+        return VStack(spacing: 0) {
             Rectangle()
-                .frame(width: geometry.size.width, height: geometry.size.width)
+                .frame(width: screenWidth, height: screenHeight / 2 - screenWidth / 4.2)
                 .foregroundColor(.white)
-                .position(x: geometry.size.width / 2, y: geometry.size.height / 4 - geometry.size.width / 4)
+                .edgesIgnoringSafeArea(.all)
             
             Rectangle()
                 .stroke(Color.black, lineWidth: 4)
-                .frame(width: geometry.size.width / 2, height: geometry.size.width / 2)
+                .frame(width: screenWidth / 2, height: screenWidth / 2)
                 .foregroundColor(.clear)
-                .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                .alignmentGuide(.top) { _ in
+                    screenHeight / 2 - screenWidth / 4.2 // Выравниваем по верхнему краю первого прямоугольника
+                }
             
             Rectangle()
-                .frame(width: geometry.size.width, height: geometry.size.width - 50)
+                .frame(width: screenWidth, height: screenHeight / 3 + screenWidth / 2)
                 .foregroundColor(.white)
-                .position(x: geometry.size.width / 2, y: geometry.size.height * 3 / 4 + geometry.size.width / 5)
         }
+        .edgesIgnoringSafeArea(.all)
     }
 }

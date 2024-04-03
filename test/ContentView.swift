@@ -1,12 +1,3 @@
-
-//
-//  Created by Vlad on 29.3.24..
-//  ContentViewModel.swift
-//  test
-//
-//  Created by Vlad on 1.4.24..
-//
-
 import SwiftUI
 
 struct ContentView: View {
@@ -14,24 +5,29 @@ struct ContentView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            VStack {
-                ZStack {
+            ZStack{
+                ZStack{
                     ImagesStackView(yOffset: $viewModel.yOffset, geometry: geometry)
                     RectanglesView(geometry: geometry)
                 }
-                .padding()
-                
-                Spacer()
-                
-                Button(action: {
-                    viewModel.moveImages()
-                }) {
-                    Text("Сместить вверх")
+                VStack{
+                    Button(action: {
+                        viewModel.moveImages()
+                    }) {
+                        Text("Hit Me")
+                            .frame(width: 200, height: 50)
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.black, lineWidth: 2)
+                            )
+                    }
                 }
+                .position(x: geometry.size.width / 2, y: geometry.size.height / 1.2)
             }
-        }
-        .onAppear {
-            viewModel.initializeOffset()
+            
         }
     }
 }
